@@ -9,8 +9,14 @@ func NewCodeBlockRoute(apiV1Group *gin.RouterGroup, c usecase.CodeBlock) {
 	r := &V1{c: c}
 	codeBlockGroup := apiV1Group.Group("/code-blocks")
 	{
-		codeBlockGroup.POST("", r.createCodeBlock)
-		codeBlockGroup.GET("/:id", r.getCodeBlockById)
-		codeBlockGroup.GET("", r.getByIds)
+		codeBlockGroup.POST("", func(context *gin.Context) {
+			_ = r.createCodeBlock(context)
+		})
+		codeBlockGroup.GET("/:id", func(context *gin.Context) {
+			_ = r.getCodeBlockById(context)
+		})
+		codeBlockGroup.GET("", func(context *gin.Context) {
+			_ = r.getByIds(context)
+		})
 	}
 }
