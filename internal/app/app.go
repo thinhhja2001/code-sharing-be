@@ -53,13 +53,14 @@ func Run(config *config.Config) {
 }
 
 func createMysqlConfig(config *config.Config) (*gorm.DB, error) {
-	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s",
 		config.MYSQL.User,
 		config.MYSQL.Pass,
 		config.MYSQL.URL,
 		config.MYSQL.DBName)
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	fmt.Printf("Connection string is %s", dsn)
 
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if db == nil {
 		return nil, err
 	}

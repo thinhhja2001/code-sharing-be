@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-sharing-be
+  labels:
+    app: code-sharing-be
+spec:
+  replicas: 5 # Desired number of identical pods
+  selector:
+    matchLabels:
+      app: code-sharing-be
+  template:
+    metadata:
+      labels:
+        app: code-sharing-be
+    spec:
+      containers:
+        - name: code-sharing-be
+          image: localhost:5000/code-sharing-be-6
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
