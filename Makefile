@@ -7,4 +7,4 @@ check_vegeta:
     fi
 
 attack: check_vegeta
-	echo "GET http://localhost:8080/v1/code-blocks/?ids=1%2C2%2C3,4" | vegeta attack -duration=${duration} --rate=${rate} | vegeta report --type=${type}
+	echo "PUT http://127.0.0.1:8080/v1/code-blocks" | vegeta attack -duration=${duration} --rate=${rate} | vegeta report --type=${type}
