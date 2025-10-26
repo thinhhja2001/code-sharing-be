@@ -8,11 +8,12 @@ import (
 	"code-sharing-be/pkg/httpserver"
 	"code-sharing-be/pkg/logger"
 	"fmt"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
 	"os"
 	"os/signal"
 	"syscall"
+
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 type User struct {
@@ -53,7 +54,7 @@ func Run(config *config.Config) {
 }
 
 func createMysqlConfig(config *config.Config) (*gorm.DB, error) {
-	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s",
+	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?parseTime=true",
 		config.MYSQL.User,
 		config.MYSQL.Pass,
 		config.MYSQL.URL,
